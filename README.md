@@ -24,3 +24,5 @@ print(t2i.token2idx(tokens))
 ```
 id 0 is for OOV
 
+## To do
+### 1. Idx2token
