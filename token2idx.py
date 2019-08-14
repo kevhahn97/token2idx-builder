@@ -14,7 +14,7 @@ class Token2idx():
         sorted_tokens = [a[0] for a in sorted_tokens]
         self.t2i = {article_id:idx+1 for idx, article_id in enumerate(sorted_tokens)}
         print('vocab coverage:', self.coverage)
-        
+
 
     def load_token2idx(self, load_dir):
         with open(load_dir, 'r', encoding='utf-8') as f:
@@ -27,7 +27,7 @@ class Token2idx():
 
 
     def token2idx(self, input):
-        return list(map(lambda x: 0 if x is None else x, list(map(lambda x: self.t2i.get(x), input))))
+        return list(map(lambda x: self.t2i.get(x, 0), input))
 
 
     def get_token2idx(self):
