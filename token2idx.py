@@ -5,7 +5,6 @@ class Token2idx():
     def __init__(self):
         pass
 
-
     def build_from_tokens(self, tokens, most_freq_num=None):
         token_count = Counter(tokens)
         sorted_tokens = sorted(token_count.items(), key=operator.itemgetter(1), reverse=True)
@@ -14,6 +13,11 @@ class Token2idx():
         sorted_tokens = [a[0] for a in sorted_tokens]
         self.t2i = {article_id:idx+1 for idx, article_id in enumerate(sorted_tokens)}
         print('vocab coverage:', self.coverage)
+        if most_freq_num is None:
+            self.vocab_size = len(sorted_tokens)
+        else:
+            self.vocab_size = most_freq_num
+        print('with vocab size:', self.vocab_size)
 
 
     def load_token2idx(self, load_dir):
