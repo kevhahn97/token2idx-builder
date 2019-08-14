@@ -9,9 +9,12 @@ class Token2idx():
     def build_from_tokens(self, tokens, most_freq_num=None):
         token_count = Counter(tokens)
         sorted_tokens = sorted(token_count.items(), key=operator.itemgetter(1), reverse=True)
+        sorted_tokens = sorted_tokens[:most_freq_num]
+        self.coverage = sum([a[1] for a in sorted_tokens]) / len(tokens)
         sorted_tokens = [a[0] for a in sorted_tokens]
-        self.t2i = {article_id:idx+1 for idx, article_id in enumerate(sorted_tokens[:most_freq_num])}
-
+        self.t2i = {article_id:idx+1 for idx, article_id in enumerate(sorted_tokens)}
+        print('vocab coverage:', self.coverage)
+        
 
     def load_token2idx(self, load_dir):
         with open(load_dir, 'r', encoding='utf-8') as f:
