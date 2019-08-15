@@ -24,6 +24,7 @@ class Token2idx():
     def load_token2idx(self, load_dir):
         with open(load_dir, 'r', encoding='utf-8') as f:
             self.t2i = json.load(f)
+            self.vocab_size = len(self.t2i)
 
 
     def save_token2idx(self, save_dir):
